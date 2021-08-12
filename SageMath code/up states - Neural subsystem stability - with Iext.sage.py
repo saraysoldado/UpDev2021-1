@@ -84,14 +84,15 @@ values_paradoxical = [g_E==1,g_I==4,E_set==5,I_set==14,Theta_E==4.8,Theta_I==25,
 values_nonparadoxical = [g_E==0.5,g_I==4,E_set==5,I_set==14,Theta_E==4.8,Theta_I==25,I_ext==8,tau_E==10,tau_I==2]
 
 
-# In[9]:
+# In[37]:
 
 
 # comment out accordingly
 #W_XY0 = [W_EE==5,W_EI==2,W_IE==10,W_II==2] # paradoxical value (g_E=1)
-#values = values_paradoxical
-W_XY0 = [W_EE==1.5,W_EI==1,W_IE==15,W_II==2] # nonparadoxical value (g_E=0.5)
-values = values_nonparadoxical
+W_XY0 = [W_EE==5,W_EI==2,W_IE==10,W_II==2] # paradoxical value (g_E=1)
+values = values_paradoxical
+#W_XY0 = [W_EE==1.5,W_EI==1,W_IE==15,W_II==2] # nonparadoxical value (g_E=0.5)
+#values = values_nonparadoxical
 
 probe = [E==8,I==5]
 if dEdt.subs(f_E).subs(values).subs(W_XY0).subs(probe) > 0:
