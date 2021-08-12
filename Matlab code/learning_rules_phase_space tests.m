@@ -24,13 +24,15 @@ alpha_II = 0.02;
 % alpha_II = 0.001;
 alpha = 0.02;
 beta = 0.02;
+beta_E = 0.01;
+beta_I = 0.01;
 
-params = cell2struct({g_E,g_I,E_set,I_set,Theta_E,Theta_I,tau_E,tau_I,alpha_EE,alpha_EI,alpha_IE,alpha_II,alpha,beta},...
-		{'g_E','g_I','E_set','I_set','Theta_E','Theta_I','tau_E','tau_I','alpha_EE','alpha_EI','alpha_IE','alpha_II','alpha','beta'},2);
+params = cell2struct({g_E,g_I,E_set,I_set,Theta_E,Theta_I,tau_E,tau_I,alpha_EE,alpha_EI,alpha_IE,alpha_II,alpha,beta,beta_E,beta_I},...
+		{'g_E','g_I','E_set','I_set','Theta_E','Theta_I','tau_E','tau_I','alpha_EE','alpha_EI','alpha_IE','alpha_II','alpha','beta','beta_E','beta_I'},2);
 
 
 % numerics
-n_steps = 2000;%1000;
+n_steps = 1000;%1000;
 dt = 0.1;%2;%1;					% Time Step ms
 t = dt*[1:n_steps];			% Time Array ms
 
@@ -68,9 +70,10 @@ W_IEini = 5;
 W_IIini = 2;
 W_ini = [W_EEini,W_EIini,W_IEini,W_IIini];
 
-W = ode4(@(t,W) kernel_standardHomeo(t,W,f_up,params),t(1),dt,t(end),W_ini);
+% W = ode4(@(t,W) kernel_standardHomeo(t,W,f_up,params),t(1),dt,t(end),W_ini);
 % W = ode4(@(t,W) kernel_crossHomeo(t,W,f_up,params),t(1),dt,t(end),W_ini);
 % W = ode4(@(t,W) kernel_twoFactor(t,W,f_up,params),t(1),dt,t(end),W_ini);
+W = ode4(@(t,W) kernel_gradDescent(t,W,f_up,params),t(1),dt,t(end),W_ini);
 
 
 disp(['E=' num2str(E_up(W(end,1),W(end,2),W(end,3),W(end,4))) ', E_set=' num2str(E_set)]);

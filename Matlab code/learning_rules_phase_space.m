@@ -7,13 +7,14 @@ clear all;
 
 % choose one
 % ACTION_SWITCH = 'RUNandSAVE';
-% ACTION_SWITCH = 'LOADandPLOT';
-ACTION_SWITCH = 'LOADandCOUNT';
+ACTION_SWITCH = 'LOADandPLOT';
+% ACTION_SWITCH = 'LOADandCOUNT';
 
 % choose one
-RULE_SWITCH = 'SH'; % StandardHomeo
+% RULE_SWITCH = 'SH'; % StandardHomeo
 % RULE_SWITCH = 'CH'; % CrossHomeo
 % RULE_SWITCH = 'TF'; % TwoFactor
+RULE_SWITCH = 'GD'; % gradient-descent TwoFactor (with anti-homeo)
 
 
 
@@ -29,6 +30,10 @@ switch RULE_SWITCH
 	case 'TF'
 		data_filename = 'grid_twoFactor_1.mat';
 % 		data_filename = 'grid_twoFactor_2.mat';
+		n_steps = 1000;
+	case 'GD'
+		data_filename = 'grid_gradDescent_1.mat';
+% 		data_filename = 'grid_gradDescent_2.mat';
 		n_steps = 1000;
 end
 dt = 0.1;					% Time Step ms
@@ -51,9 +56,11 @@ alpha_IE = 0.02;
 alpha_II = 0.02;
 alpha = 0.02;%0.01;%0.02;
 beta = 0.02;%0.05;%0.02;
+beta_E = 0.01;
+beta_I = 0.01;
 
-params = cell2struct({g_E,g_I,E_set,I_set,Theta_E,Theta_I,tau_E,tau_I,alpha_EE,alpha_EI,alpha_IE,alpha_II,alpha,beta},...
-		{'g_E','g_I','E_set','I_set','Theta_E','Theta_I','tau_E','tau_I','alpha_EE','alpha_EI','alpha_IE','alpha_II','alpha','beta'},2);
+params = cell2struct({g_E,g_I,E_set,I_set,Theta_E,Theta_I,tau_E,tau_I,alpha_EE,alpha_EI,alpha_IE,alpha_II,alpha,beta,beta_E,beta_I},...
+		{'g_E','g_I','E_set','I_set','Theta_E','Theta_I','tau_E','tau_I','alpha_EE','alpha_EI','alpha_IE','alpha_II','alpha','beta','beta_E','beta_I'},2);
 
 
 % % numerics
@@ -69,7 +76,7 @@ params = cell2struct({g_E,g_I,E_set,I_set,Theta_E,Theta_I,tau_E,tau_I,alpha_EE,a
 W_EIup = @(W_EEup) ((E_set*W_EEup - Theta_E)*g_E - E_set)/(I_set*g_E);
 W_IIup = @(W_IEup) ((E_set*W_IEup - Theta_I)*g_I - I_set)/(I_set*g_I);
 
-% fixed point relationships, activities
+% fixed point relationships -s activities
 E_up = @(W_EE,W_EI,W_IE,W_II) (Theta_I*W_EI*g_I - (W_II*g_I + 1)*Theta_E)*g_E/((W_EI*W_IE*g_I - (W_II*g_I + 1)*W_EE)*g_E + W_II*g_I + 1);
 I_up = @(W_EE,W_EI,W_IE,W_II) ((Theta_I*W_EE*g_I - Theta_E*W_IE*g_I)*g_E - Theta_I*g_I)/((W_EI*W_IE*g_I - (W_II*g_I + 1)*W_EE)*g_E + W_II*g_I + 1);
 f_up = {E_up,I_up};
@@ -87,6 +94,10 @@ if strcmp(ACTION_SWITCH,'RUNandSAVE')
 	W_EIinigrid = [0.5:0.5:5];
 	W_IEinigrid = [2:2:20];
 	W_IIinigrid = [1:1:10];
+% 	W_EEinigrid = [1:1:4];
+% 	W_EIinigrid = [0.5:0.5:2];
+% 	W_IEinigrid = [2:2:8];
+% 	W_IIinigrid = [1:1:4];
 	W_inigrid = ndgrid(W_EEinigrid,W_EIinigrid,W_IEinigrid,W_IIinigrid);
 
 	NEE = length(W_EEinigrid);
@@ -112,6 +123,8 @@ if strcmp(ACTION_SWITCH,'RUNandSAVE')
 							W = ode4(@(t,W) kernel_crossHomeo(t,W,f_up,params),t(1),dt,t(end),W_ini);
 						case 'TF'
 							W = ode4(@(t,W) kernel_twoFactor(t,W,f_up,params),t(1),dt,t(end),W_ini);
+						case 'GD'
+							W = ode4(@(t,W) kernel_gradDescent(t,W,f_up,params),t(1),dt,t(end),W_ini);
 					end
 					W_grid(nee,nei,nie,nii,:,:) = W;
 				end
@@ -139,7 +152,7 @@ elseif strcmp(ACTION_SWITCH,'LOADandPLOT')
 	W_IE_lims = [0 W_IEinigrid(end)];
 	W_II_lims = [0 W_IIinigrid(end)];
 	% choose one value of W_II
-	W_II_idx = 8;
+	W_II_idx = 1;
 
 
 	fsize = 12;
