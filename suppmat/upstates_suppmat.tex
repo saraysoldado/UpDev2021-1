@@ -38,7 +38,7 @@ sorting=none
 \begin{document}
 
 \title{\vspace{-2.0cm}Supplementary Information\\{\bf Orchestrated Excitatory and Inhibitory Learning Rules Lead to the Unsupervised Emergence of Up-states and Balanced Network Dynamics}}
-\author{Soldado-Magraner, Motanis, Laje \& Buonomano 2021}
+\author{Soldado-Magraner, Laje \& Buonomano 2021}
 \date{\today}
 
 \maketitle
@@ -223,10 +223,10 @@ In order to determine the validity of the stability condition, Eq.\ \ref{eq.TF_s
 \noindent where
 \begin{displaymath}
 \begin{aligned}
-a & = ((W_{\EE\up}g_E - 1) g_I - (W_{\II\up}g_I + 1) g_E) E_{\set} I_{\set} \\
-a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I + (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
-b & = 2g_E E_{\set} I_{\set} \\
-b^\prime & = 2I_{\set}^2 g_E \\
+a & = (W_{\EE\up}g_E - 1) E_{\set} I_{\set} g_I \\
+a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I \\
+b & = (W_{\II\up}g_I + 1) E_{\set} I_{\set} g_E \\
+b^\prime & = (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
 c & = (I_{\set}\Theta_I - E_{\set}\Theta_E)g_E g_I
 \end{aligned}
 \end{displaymath}
@@ -235,21 +235,11 @@ c & = (I_{\set}\Theta_I - E_{\set}\Theta_E)g_E g_I
 \begin{displaymath}
 \begin{aligned}
 I_{\set} & > E_{\set} \\
-g_I & > g_E \\
 \Theta_I & > \Theta_E
 \end{aligned}
 \end{displaymath}
 
-\noindent and thus it is likely that
-\begin{displaymath}
-\begin{aligned}
-a^\prime & > a \\
-b^\prime & > b \\
-c & > 0
-\end{aligned}
-\end{displaymath}
-
-\noindent In addition, $b$ and $b^\prime$ are positive definite, and $a^\prime>0$ in the paradoxical regime ($W_{\EE}g_E - 1 > 0$). All this makes the stability condition likely satisfied, and thus the learning rule stable. Finally, a small enough $\beta$ would make the condition more likely to hold.
+\noindent and thus it is likely that $c>0$. In addition, $b$ and $b^\prime$ are positive definite, and $a,a^\prime>0$ in the paradoxical regime ($W_{\EE}g_E - 1 > 0$). All this makes the stability condition likely satisfied, and thus the learning rule stable. Finally, a small enough $\beta$ would make the condition more likely to hold.
 
 See Section \ref{sec.otherRules_details} for a detailed analysis.
 

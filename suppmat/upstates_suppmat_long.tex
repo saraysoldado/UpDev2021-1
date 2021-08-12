@@ -49,7 +49,7 @@ sorting=none
 \begin{document}
 
 \title{\vspace{-2.0cm}Supplementary Information\\{\bf Orchestrated Excitatory and Inhibitory Learning Rules Lead to the Unsupervised Emergence of Up-states and Balanced Network Dynamics}}
-\author{Soldado-Magraner, Motanis, Laje \& Buonomano 2021}
+\author{Soldado-Magraner, Laje \& Buonomano 2021}
 \date{\today}
 
 \maketitle
@@ -140,10 +140,10 @@ The equations for the Two-Factor learning rule are
 \noindent where
 \begin{displaymath}
 \begin{aligned}
-a & = ((W_{\EE\up}g_E - 1) g_I - (W_{\II\up}g_I + 1) g_E) E_{\set} I_{\set} \\
-a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I + (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
-b & = 2g_E E_{\set} I_{\set} \\
-b^\prime & = 2I_{\set}^2 g_E \\
+a & = (W_{\EE\up}g_E - 1) E_{\set} I_{\set} g_I \\
+a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I \\
+b & = (W_{\II\up}g_I + 1) E_{\set} I_{\set} g_E \\
+b^\prime & = (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
 c & = (I_{\set}\Theta_I - E_{\set}\Theta_E)g_E g_I
 \end{aligned}
 \end{displaymath}
@@ -1048,14 +1048,14 @@ The stability condition above can be rewritten in a more useful form by using Eq
 \begin{equation}
 (a - b)\beta < (a^\prime + b^\prime + c) \alpha
 \end{equation}
-  
+
 \noindent where
 \begin{displaymath}
 \begin{aligned}
-a & = ((W_{\EE\up}g_E - 1) g_I - (W_{\II\up}g_I + 1) g_E) E_{\set} I_{\set} \\
-a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I + (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
-b & = 2g_E E_{\set} I_{\set} \\
-b^\prime & = 2I_{\set}^2 g_E \\
+a & = (W_{\EE\up}g_E - 1) E_{\set} I_{\set} g_I \\
+a^\prime & = (W_{\EE\up}g_E - 1)E_{\set}^2 g_I \\
+b & = (W_{\II\up}g_I + 1) E_{\set} I_{\set} g_E \\
+b^\prime & = (W_{\II\up}g_I + 1)I_{\set}^2 g_E \\
 c & = (I_{\set}\Theta_I - E_{\set}\Theta_E)g_E g_I
 \end{aligned}
 \end{displaymath}
@@ -1064,20 +1064,11 @@ c & = (I_{\set}\Theta_I - E_{\set}\Theta_E)g_E g_I
 \begin{displaymath}
 \begin{aligned}
 I_{\set} & > E_{\set} \\
-g_I & > g_E \\
 \Theta_I & > \Theta_E
 \end{aligned}
 \end{displaymath}
 
-\noindent and thus it is likely that
-\begin{displaymath}
-\begin{aligned}
-a & < a^\prime \\
-b & < b^\prime
-\end{aligned}
-\end{displaymath}
-
-\noindent In addition, $a^\prime$, $b$, $b^\prime$ and $c$ are all positive definite. All this makes the stability condition likely satisfied, and thus the learning rule stable. Finally, a small enough $\beta$ would make the condition to hold for any parameter values.
+\noindent and thus it is likely that $c>0$. In addition, $b$ and $b^\prime$ are positive definite, and $a,a^\prime>0$ in the paradoxical regime ($W_{\EE}g_E - 1 > 0$). All this makes the stability condition likely satisfied, and thus the learning rule stable. Finally, a small enough $\beta$ would make the condition more likely to hold.
 
 
 
