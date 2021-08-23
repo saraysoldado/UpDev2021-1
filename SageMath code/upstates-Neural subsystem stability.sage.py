@@ -3,14 +3,14 @@
 
 # # Up states: Stability of the neural subsystem
 
-# Soldado-Magraner, Motanis, Laje & Buonomano (2021)  
+# Soldado-Magraner, Laje & Buonomano (2021)  
 # Author: Rodrigo Laje
 
 # ## Neural dynamics
 
 # ### System's equations and fixed point (steady-state solution)
 
-# In[2]:
+# In[1]:
 
 
 var('E,I')
@@ -29,7 +29,7 @@ var('E_set,I_set');
 # 
 # For synaptic current values above threshold:
 
-# In[4]:
+# In[2]:
 
 
 f_E = dEdt == (-E + g_E*(W_EE*E - W_EI*I - Theta_E))/tau_E
@@ -40,7 +40,7 @@ show(f_I)
 
 # The non-trivial fixed point is the Up state:
 
-# In[5]:
+# In[3]:
 
 
 neuralFixedPoint = solve([f_E.subs(dEdt==0),f_I.subs(dIdt==0)],E,I)
@@ -48,13 +48,13 @@ E_up = neuralFixedPoint[0][0]
 I_up = neuralFixedPoint[0][1]
 
 
-# In[6]:
+# In[4]:
 
 
 show(E_up)
 
 
-# In[7]:
+# In[5]:
 
 
 show(I_up)
@@ -62,7 +62,7 @@ show(I_up)
 
 # ### Nulclines and phase space
 
-# In[8]:
+# In[6]:
 
 
 E_null = solve(f_E.subs(dEdt==0),I)[0]
@@ -73,13 +73,13 @@ show(I_null)
 
 # Parameter values:
 
-# In[9]:
+# In[7]:
 
 
 values_paradoxical = [g_E==1,g_I==4,E_set==5,I_set==14,Theta_E==4.8,Theta_I==25,tau_E==10,tau_I==2]
 
 
-# In[11]:
+# In[8]:
 
 
 W_XY0 = [W_EE==5,W_EI==2,W_IE==10,W_II==2]
@@ -125,7 +125,7 @@ show(fig)
 # \end{pmatrix}
 # $  
 
-# In[12]:
+# In[9]:
 
 
 J_neural = jacobian([f_E.rhs(),f_I.rhs()],(E,I))
@@ -145,7 +145,7 @@ show(J_neural)
 # 
 # In summary, for eigenvalues either complex or purely real, the real parts of both eigenvalues are negative if $\mathit{Tr}<0$ and $\mathit{Det}>0$, thus the stability conditions:
 
-# In[13]:
+# In[10]:
 
 
 J_det = J_neural[0,0]*J_neural[1,1] - J_neural[0,1]*J_neural[1,0]
@@ -161,7 +161,7 @@ show(neural_stable_trcond)
 # For the Up state to exist we need the values $E_{up}$ and $I_{up}$ to be positive.  
 # First note that their denominator must be positive because it is equivalent to the determinant condition above:
 
-# In[15]:
+# In[11]:
 
 
 den = E.subs(E_up).denominator()
@@ -174,7 +174,7 @@ show((den - neural_stable_detcond_aux.lhs()).expand())
 
 # Then $E_{up}$ and $I_{up}$ must have positive numerators:
 
-# In[16]:
+# In[12]:
 
 
 up_exist_cond_1 = ((E.subs(E_up).numerator() > 0)/g_E).expand() # divide by a positive number only
@@ -192,7 +192,7 @@ show(up_exist_cond_2)
 # $I_{set}=I(W_{EE},W_{EI},W_{IE},W_{II})$  
 # and solve for $W_{EI}$ and $W_{II}$ (since it is an underdetermined system, weights $W_{EE}$ and $W_{IE}$ are free).
 
-# In[17]:
+# In[13]:
 
 
 [W_EIup,W_IIup] = solve([E_up.subs(E==E_set),I_up.subs(I==I_set)],W_EI,W_II)[0]
@@ -202,14 +202,14 @@ show(W_IIup)
 
 # Both weights must have positive values:
 
-# In[18]:
+# In[14]:
 
 
 positive_WEI_cond = solve(W_EI.subs(W_EIup)>0,W_EE)[0][2] # choose solution with positive I_set and g_I
 show(positive_WEI_cond)
 
 
-# In[19]:
+# In[15]:
 
 
 positive_WII_cond = solve(W_II.subs(W_IIup)>0,W_IE)[0][2] # choose solution with positive E_set and g_E
@@ -222,7 +222,7 @@ show(positive_WII_cond)
 
 # Coefficient of inhibitory threshold $\Theta_I$ in $I_{up}$:
 
-# In[20]:
+# In[16]:
 
 
 coeffThetaI = I_up.right().coefficient(Theta_I).factor()
@@ -231,7 +231,7 @@ show(coeffThetaI)
 
 # Note that the denominator must be positive because it is exactly the first stability condition for the neural system:
 
-# In[21]:
+# In[17]:
 
 
 neural_stable_detcond_v2 = neural_stable_detcond - (W_EE*g_E-1)*(W_II*g_I+1)
@@ -239,7 +239,7 @@ show(neural_stable_detcond)
 show(neural_stable_detcond_v2)
 
 
-# In[22]:
+# In[18]:
 
 
 show(neural_stable_detcond_v2.left().expand())
@@ -247,7 +247,7 @@ show(coeffThetaI.denominator())
 show(neural_stable_detcond_v2.left().expand() - coeffThetaI.denominator())
 
 
-# In[23]:
+# In[19]:
 
 
 paradox_cond = coeffThetaI.numerator()/g_I > 0
@@ -258,7 +258,7 @@ show(paradox_cond)
 
 # Rewrite all conditions in terms of the free weights $W_{EE}$ and $W_{IE}$
 
-# In[24]:
+# In[20]:
 
 
 neural_stable_detcond_v2 = solve(neural_stable_detcond.subs([W_EIup,W_IIup]),W_IE)[1][2] # choose solution with positive g_I and I_set
@@ -267,7 +267,7 @@ show(neural_stable_detcond_v2)
 show(neural_stable_trcond_v2)
 
 
-# In[25]:
+# In[21]:
 
 
 up_exist_cond_1_aux = (up_exist_cond_1*I_set*g_E/(E_set*g_I)).subs([W_EIup,W_IIup]).factor()
@@ -284,7 +284,7 @@ show(up_exist_cond_2_v2)
 
 # #### Paradoxical conditions
 
-# In[26]:
+# In[22]:
 
 
 probe = [W_EE==5,W_IE==10] # paradoxical W_EE value (g_E=1)
@@ -321,7 +321,7 @@ print("      border: ",up_exist_cond_2_v2_border_pdx)
 print("      probe: ",bool(up_exist_cond_2_v2.subs(values_paradoxical).subs(probe)))
 
 
-# In[29]:
+# In[23]:
 
 
 W_EE_max = 10
@@ -352,7 +352,7 @@ show(fig)
 
 # An alternative way of seeing the paradoxical effect is to plot $E_{up}$ and $I_{up}$ as a function of the weights:
 
-# In[30]:
+# In[24]:
 
 
 W_EE0 = 5 # paradoxical value (g_E=1)
@@ -393,7 +393,7 @@ show(fig)
 
 # In the plot above $E_{up}$ behaves as expected as a function of every weight.
 
-# In[31]:
+# In[25]:
 
 
 W_EE0 = 5 # paradoxical value (g_E=1)
@@ -433,7 +433,7 @@ show(fig)
 
 # In the plot above $I_{up}$ decreases as a function of $W_{IE}$ and increases as a function of $W_{II}$, both unexpected (i.e. paradoxical).
 
-# In[32]:
+# In[26]:
 
 
 fig1 = plot(E_up_WEI/I_up_WEI,(W_EI,0,W_max),detect_poles='show',color='blue',legend_label='W_EI')
@@ -474,10 +474,10 @@ show(fig)
 # Export notebook as script for reuse in following notebooks.  
 # SAVE FILE FIRST!
 
-# In[33]:
+# In[27]:
 
 
-get_ipython().system("jupyter nbconvert 'up states - Neural subsystem stability.ipynb' --to script --output 'up states - Neural subsystem stability.sage'")
+get_ipython().system("jupyter nbconvert 'upstates-Neural subsystem stability.ipynb' --to script --output 'upstates-Neural subsystem stability.sage'")
 
 
 # In[ ]:

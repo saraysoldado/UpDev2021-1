@@ -3,7 +3,7 @@
 
 # # Up states: Stability of the neural subsystem
 
-# Soldado-Magraner, Motanis, Laje & Buonomano (2021)  
+# Soldado-Magraner, Laje & Buonomano (2021)  
 # Author: Rodrigo Laje
 
 # (With constant input current $I_{ext}$ in order to have a non-paradoxical fixed point.)
@@ -84,7 +84,7 @@ values_paradoxical = [g_E==1,g_I==4,E_set==5,I_set==14,Theta_E==4.8,Theta_I==25,
 values_nonparadoxical = [g_E==0.5,g_I==4,E_set==5,I_set==14,Theta_E==4.8,Theta_I==25,I_ext==8,tau_E==10,tau_I==2]
 
 
-# In[37]:
+# In[9]:
 
 
 # comment out accordingly
@@ -610,7 +610,7 @@ show(fig)
 # In[31]:
 
 
-get_ipython().system("jupyter nbconvert 'up states - Neural subsystem stability - with Iext.ipynb' --to script --output 'up states - Neural subsystem stability - with Iext.sage'")
+get_ipython().system("jupyter nbconvert 'upstates-Neural subsystem stability-with Iext.ipynb' --to script --output 'upstates-Neural subsystem stability-with Iext.sage'")
 
 
 # In[ ]:
