@@ -80,7 +80,7 @@ In continuous-time dynamics, the equations for the Homeostatic learning rule are
 \centering
 \includegraphics[width=\linewidth]{SH_stability}
 \includegraphics[width=\linewidth]{SH_stability_slowInh.pdf}
-\caption{Regions of stability, {\em Homeostatic} learning rule. (Top) For biologically backed parameter values and learning rates of the same value ($\alpha_{\XY} = 0.02$), the stability region of the Homeostatic learning rule has little overlap with the region where the neural subsystem is stable. (Bottom) Setting $\alpha_{\EE}=\alpha_{\EI}=0.02$ and $\alpha_{\IE}=\alpha_{\II}=0.001$ enlarges the stability region of the learning rule and makes it overlap with the stability region of the neural subsystem.
+\caption{Regions of stability, {\em Homeostatic} learning rule. (Top) For biologically backed parameter values and learning rates of the same value ($\alpha_{\XY} = 0.02$), the stability region of the Homeostatic learning rule has little overlap with the region where the neural subsystem is stable. (Bottom) Setting $\alpha_{\EE}=\alpha_{\EI}=0.02$ and $\alpha_{\IE}=\alpha_{\II}=0.0002$ enlarges the stability region of the learning rule and makes it overlap with the stability region of the neural subsystem.
 Every label is on the side where the corresponding condition holds (synaptic stable: Eq.\ \ref{eq.SH_stable_cond_v1_summary}; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
 \label{fig.SH_stability}
 \end{figure}
@@ -175,9 +175,9 @@ See Section \ref{sec.otherRules_details} for a detailed analysis.
 
 
 
-\subsection{{\em Two-Factor} learning rule}
+\subsection{{\em Two-Term} learning rule}
 
-The equations for the Two-Factor learning rule in continuous-time dynamics are
+The equations for the Two-Term learning rule in continuous-time dynamics are
 \begin{equation}
 \begin{aligned}
 \frac{dW_{\EE}}{dt} & = +\alpha E (I_{\set} - I) + \beta E (E_{\set} - E) \\
@@ -185,7 +185,7 @@ The equations for the Two-Factor learning rule in continuous-time dynamics are
 \frac{dW_{\IE}}{dt} & = -\alpha E (E_{\set} - E) + \beta E (I_{\set} - I) \\
 \frac{dW_{\II}}{dt} & = +\alpha I (E_{\set} - E) - \beta I (I_{\set} - I)
 \end{aligned}
-\label{eq.TF_summary}
+\label{eq.TT_summary}
 \end{equation}
 
 \noindent and its stability condition in terms of the free weights $W_{\EE}$ and $W_{\IE}$ is
@@ -195,29 +195,29 @@ The equations for the Two-Factor learning rule in continuous-time dynamics are
 & > (I_{\set} \beta - E_{\set} \alpha) g_E W_{\EE\up} \\
 & + (\Theta_E g_E + E_{\set}) \alpha + (\Theta_I g_E - I_{\set}) \beta
 \end{aligned}
-\label{eq.TF_stable_cond_v1}
+\label{eq.TT_stable_cond_v1}
 \end{equation}
 
-In Figure \ref{fig.TF_stability} we plot the stability condition of this rule, Eq.\ \ref{eq.TF_stable_cond_v1}, for three different parameter values: $\alpha \gg \beta$ (the ``Cross-Homeostatic'' terms dominate over the ``Homeostatic'' terms, and the rule is stable with the largest stability region); $\alpha \sim \beta$ (the two terms are of comparable size); and $\alpha \ll \beta$ (the ``Homeostatic'' terms dominate instead, and the stability region of the rule is as small as that of the Homeostatic learning rule).
+In Figure \ref{fig.TT_stability} we plot the stability condition of this rule, Eq.\ \ref{eq.TT_stable_cond_v1}, for three different parameter values: $\alpha \gg \beta$ (the ``Cross-Homeostatic'' terms dominate over the ``Homeostatic'' terms, and the rule is stable with the largest stability region); $\alpha \sim \beta$ (the two terms are of comparable size); and $\alpha \ll \beta$ (the ``Homeostatic'' terms dominate instead, and the stability region of the rule is as small as that of the Homeostatic learning rule).
 
 \begin{figure*}[!ht]
 \centering
 \parbox[c]{\columnwidth}{
-\includegraphics[width=\columnwidth]{TF_stability_slowHomeo.pdf}
-\includegraphics[width=\columnwidth]{TF_stability_slowCross.pdf}}
+\includegraphics[width=\columnwidth]{TT_stability_slowHomeo.pdf}
+\includegraphics[width=\columnwidth]{TT_stability_slowCross.pdf}}
 \parbox[c]{\columnwidth}{
 \begin{figure}[H]
-\includegraphics[width=\columnwidth]{TF_stability_similar.pdf}
-\caption{Regions of stability, {\em Two-Factor} rule. (Top Left) $\alpha=0.02$, $\beta=0.005$. (Top Right) $\alpha=0.01$, $\beta=0.02$. (Bottom Left) $\alpha=0.0002$, $\beta=0.02$. Every label is on the side where the  corresponding  condition  holds (synaptic stable: Eq.\ \ref{eq.TF_stable_cond_v1}; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
-\label{fig.TF_stability}
+\includegraphics[width=\columnwidth]{TT_stability_similar.pdf}
+\caption{Regions of stability, {\em Two-Term} rule. (Top Left) $\alpha=0.02$, $\beta=0.005$. (Top Right) $\alpha=0.01$, $\beta=0.02$. (Bottom Left) $\alpha=0.0002$, $\beta=0.02$. Every label is on the side where the  corresponding  condition  holds (synaptic stable: Eq.\ \ref{eq.TT_stable_cond_v1}; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
+\label{fig.TT_stability}
 \end{figure}}
 \end{figure*}
 
 
-In order to determine the validity of the stability condition, Eq.\ \ref{eq.TF_stable_cond_v1}, in a more general situation, we rewrite it in a more useful form:
+In order to determine the validity of the stability condition, Eq.\ \ref{eq.TT_stable_cond_v1}, in a more general situation, we rewrite it in a more useful form:
 \begin{equation}
 (a - b)\beta < (a^\prime + b^\prime + c) \alpha
-\label{eq.TF_stable_cond_v2}
+\label{eq.TT_stable_cond_v2}
 \end{equation}
 
 \noindent where
@@ -339,6 +339,65 @@ See Section \ref{sec.otherRules_details} for a detailed analysis.
 
 
 
+\subsection{{\em Forced-Balance} learning rule}
+
+The equations for the Forced-Balance learning rule are
+\begin{equation}
+\begin{aligned}
+\frac{dW_{\EE}}{dt} & = +\alpha_1 g_E E(E_{\set} - E) \\
+\frac{dW_{\EI}}{dt} & = \frac{1}{\tau_0} (W_{\EI\up} - W_{\EI}) \\
+\frac{dW_{\IE}}{dt} & = +\alpha_3 g_I E(I_{\set} - I) \\
+\frac{dW_{\II}}{dt} & = \frac{1}{\tau_0} (W_{\II\up} - W_{\II})
+\end{aligned}
+\label{eq.FB_summary}
+\end{equation}
+
+\noindent and the conditions for the Up state to be stable under this rule are
+\begin{equation}
+\begin{aligned}
+a_1 + b_1(W_{\II\up} \, g_I + 1) & < b_1^\prime(W_{\EE\up} \, g_E - 1) \\
+a_2 + b_2(W_{\II\up} \, g_I + 1) & < b_2^\prime(W_{\EE\up} \, g_E - 1)
+\end{aligned}
+\label{eq.FB_stable_cond}
+\end{equation}
+
+\noindent where
+\begin{displaymath}
+\begin{aligned}
+a_1 & = (I_{\set} \Theta_E \Theta_I \, \alpha_1 \, g_E g_I + E_{\set}^3 \alpha_3) \, g_E g_I \\
+b_1 & = I_{\set}^2 \Theta_E \, \alpha_1 g_E^2 g_I - E_{\set}^2 I_{\set} \, \alpha_1 \, g_E^2 \\
+b_1^\prime & = E_{\set} I_{\set} \Theta_I \, \alpha_1 \, g_E g_I^2 + E_{\set}^2 I_{\set} \, \alpha_3 \, g_I^2 \\
+a_2 & = 2 \Theta_E \Theta_I \, \alpha_1 \, g_E^2 g_I^2 \\
+b_2 & = 2I_{\set} \Theta_E \, \alpha_1 \, g_E^2 g_I - E_{\set}^2 \, \alpha_1 \, g_E^2 \\
+b_2^\prime & = 2E_{\set} \Theta_I \, \alpha_1 \, g_E g_I^2 + E_{\set}^2 \, \alpha_3 \, g_I^2
+\end{aligned}
+\end{displaymath}
+
+
+In Figure \ref{fig.FB_stability} we plot the stability condition of this rule, Eq.\ \ref{eq.FB_stable_cond}, for three different parameter values: $\alpha_1 = \alpha_3$, $\alpha_1 \gg \alpha_3$ (inhibitory plasticity slower); and $\alpha_1 \ll \alpha_3$ (excitatory plasticity slower).
+
+
+
+
+\begin{figure*}[!ht]
+\centering
+\parbox[c]{\columnwidth}{
+\includegraphics[width=\columnwidth]{FB_stability_equal.pdf}
+\includegraphics[width=\columnwidth]{FB_stability_sloweralpha3.pdf}}
+\parbox[c]{\columnwidth}{
+\begin{figure}[H]
+\includegraphics[width=\columnwidth]{FB_stability_fasteralpha3.pdf}
+\caption{Regions of stability, {\em Forced-Balance} rule. (Top Left) Equal rates ($\alpha_{1,3}=0.02$). (Top Right) Slow excitatory ($\alpha_1=0.0002$, $\alpha_3=0.02$). (Bottom Left) Slow inhibitory ($\alpha_1=0.02$, $\alpha_3=0.0002$). Every label is on the side where the  corresponding  condition  holds (synaptic stable 1 and 2: Eq.\ \ref{eq.FB_stable_cond} after switching to $W_{\EE}$ and $W_{\IE}$; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
+\label{fig.FB_stability}
+\end{figure}}
+\end{figure*}
+
+
+
+
+In order to decide whether conditions Eq.\ \ref{eq.FB_stable_cond} are satisfied in a more general case, note that $b_1$ and $b_2$ on the left-hand side are subtractions whereas $b_1^\prime$ and $b_2^\prime$ on the right-hand side are sums of positive definite terms, which helps satisfying the condition. On the other hand, one of the stability conditions of the neural subsystem might counter the effect: $(W_{\II\up} \, g_I + 1)\tau_E > (W_{\EE\up} \, g_E - 1)\tau_I$ (see Section \ref{sec.neural} below) but for biologically backed parameter values it is $\tau_E > \tau_I$ thus leaving room for the condition to hold. See Section \ref{sec.otherRules_details} for a detailed analysis.
+
+
 
 
 \section{Detailed calculations}
@@ -355,7 +414,7 @@ For this we will require that the stability conditions of the neural subsystem a
 \item Address (linear) stability. If both nonzero eigenvalues have negative real part, then the Up state is stable under the learning rule; if at least one of the nonzero eigenvalues has positive real part, then the Up state is unstable \cite{Strogatz2018,Wiggins1996}. (A note on abuse of notation: we might say indistinctly ``the Up state is stable/unstable'' and ``the learning rule is stable/unstable''.)
 \end{enumerate}
 
-Eigenvalues and stability in the presence of continuous, i.e. non-isolated, attractors have been discussed in the context of neural networks for eye position control \cite{Seung1996,Seung1998} (keep in mind that their eigenvalues' critical value is 1 instead of zero because they consider eigenvalues of the connectivity matrix alone, whereas we consider eigenvalues of the whole linear part). As the Up state is a collection of non-isolated fixed points that form a 2D plane, there is no dynamics along the plane, and the linear stability analysis is enough to fully address stability---we do have two zero eigenvalues, but there is no need to compute the center manifold \cite{Wiggins1996} because the other two eigenvalues represent the whole dynamics around the fixed point and have nonzero real part.
+Eigenvalues and stability in the presence of continuous, i.e. non-isolated, attractors have been discussed in the context of neural networks for eye position control \cite{Seung1996,Seung1998} (keep in mind that the eigenvalues' critical value in these references is 1 instead of zero because they consider eigenvalues of the connectivity matrix alone, whereas we consider eigenvalues of the whole linear part). As the Up state is a collection of non-isolated fixed points that form a 2D plane, there is no dynamics along the plane, and the linear stability analysis is enough to fully address stability---we do have two zero eigenvalues, but there is no need to compute the center manifold \cite{Wiggins1996} because the other two eigenvalues represent the whole dynamics around the fixed point and have nonzero real part.
 
 In order to apply the tools from Dynamical Systems' theory for flows in a unified way for both the neural and synaptic subsystems, we will switch from a discrete-time description of synaptic weight dynamics (where the change in weight $W$ is represented by $\Delta W$ applied every certain time interval) to a continuous-time description (where the weights are continuously evolving albeit with a long time scale $\tau_0$):
 \begin{displaymath}
@@ -369,10 +428,11 @@ In the following we first define the neural subsystem and compute its stability 
 
 
 \subsection{Neural dynamics}
+\label{sec.neural}
 
 For the neural+synaptic system in the QSS approximation to be stable under a specific synaptic learning rule, it is necessary that the neural subsystem is stable so it remains in its QSS solution as the weights evolve. In this section we define the neural subsystem and compute its stability conditions.
 
-(SageMath code in the Supplementary Material: {\tt up states - Neural subsystem stability.ipynb})
+(SageMath code in the Supplementary Material: {\tt upstates-Neural subsystem stability.ipynb})
 
 
 \subsubsection{System's equations and fixed points}
@@ -454,7 +514,7 @@ Second, note that the system is underdetermined and that is why two of the weigh
 \begin{eqnarray}
 W_{\EE\up} & > & \frac{\Theta_E \, g_E + E_{\set}}{E_{\set} \, g_E}
 \label{eq.positive_WEI} \\
-W_{\IE\up} & > & \frac{\Theta_I \, g_I + I_{\set}}{I_{\set} \, g_I}
+W_{\IE\up} & > & \frac{\Theta_I \, g_I + I_{\set}}{E_{\set} \, g_I}
 \label{eq.positive_WII}
 \end{eqnarray}
 
@@ -506,7 +566,7 @@ $\tau_I$ & = & 2 & & $\tau_E$ & = & 10
 
 In this section we show in detail the calculation of the stability condition for the Homeostatic learning rule.
 
-(SageMath code in the Supplementary Material: {\tt up states - Homeostatic stability.ipynb})
+(SageMath code in the Supplementary Material: {\tt upstates-Homeostatic stability.ipynb})
 
 
 \subsubsection{Definition of the learning rule}
@@ -750,9 +810,10 @@ The boundary of the stability condition for this learning rule, Eq.\ \ref{eq.SH_
 
 The stability calculations for the rest of the rules follow very similar paths. They can be found in the corresponding SageMath-Jupyter notebooks:
 \begin{itemize}
-\item[] {\tt up states - CrossHomeostatic stability.ipynb}
-\item[] {\tt up states - Two-Factor stability.ipynb}
-\item[] {\tt up states - SynapticScaling stability.ipynb}
+\item[] {\tt upstates-CrossHomeostatic stability.ipynb}
+\item[] {\tt upstates-TwoTerm stability.ipynb}
+\item[] {\tt upstates-SynapticScaling stability.ipynb}
+\item[] {\tt upstates-ForcedBalance stability.ipynb}
 \end{itemize}
 
 
@@ -764,10 +825,11 @@ The stability calculations for the rest of the rules follow very similar paths. 
 
 All results above were developed with the neural subsystem set in the paradoxical regime---that is, the region in ($W_{\EE},W_{\IE}$) leading to a stable Up state was completely within the paradoxical region ($W_{\EE}g_E > 1$). In order to show the importance of the paradoxical behavior for the stability of the learning rules, we also computed the stability conditions of every learning rule in a more general setting where the excitatory subpopulation in the neural subsystem has an external, constant, excitatory input current $I_{\ext}$. This allows the neural subsystem to display both paradoxical and non-paradoxical stable behavior (in the second case, at the expense of the Up state not being an inhibition-stabilized fixed point). The results can be found in the following SageMath-Jupyter notebooks:
 \begin{itemize}
-\item[] {\tt up states - Neural subsystem stability - with Iext.ipynb}
-\item[] {\tt up states - Homeostatic stability - with Iext.ipynb}
-\item[] {\tt up states - Two-Factor stability - with Iext.ipynb}
-\item[] {\tt up states - SynapticScaling stability - with Iext.ipynb}
+\item[] {\tt upstates-Neural subsystem stability-with Iext.ipynb}
+\item[] {\tt upstates-Homeostatic stability-with Iext.ipynb}
+\item[] {\tt upstates-TwoTerm stability-with Iext.ipynb}
+\item[] {\tt upstates-SynapticScaling stability-with Iext.ipynb}
+\item[] {\tt upstates-ForcedBalance stability-with Iext.ipynb}
 \end{itemize}
 
 \noindent (The stability condition of the Cross-Homeostatic learning rule doesn't depend on $I_{\ext}$.)
@@ -776,7 +838,7 @@ All results above were developed with the neural subsystem set in the paradoxica
 
 \section{Learning rule from loss function}
 
-(SageMath code in the Supplementary Material: {\tt up states - Loss function.ipynb})
+(SageMath code in the Supplementary Material: {\tt upstates-Loss function.ipynb})
 
 Here we show how to compute the learning rule starting from a loss function. Then we make an approximation by considering the weight values are small, and take that as input to interpret several learning rules that don't come from a loss function.
 
@@ -809,7 +871,7 @@ L = L(E,I)
 \label{eq.LF_gradient}
 \end{equation}
 
-\noindent with learning rate $\alpha$. The unfolded learning rules, that is the equations that govern the weights' dynamics, are then
+\noindent with a single learning rate $\alpha$ for simplicity. The unfolded learning rules, that is the equations that govern the weights' dynamics, are then
 \begin{equation}
 \begin{aligned}
 \Delta W_{\EE} & = - \alpha \frac{\partial L}{\partial W_{\EE}} \\
@@ -844,6 +906,8 @@ L = L(E,I)
 
 \subsection{Detailed calculation}
 
+\subsubsection{Exact learning rules}
+
 \paragraph{Loss function}
 
 We choose a very general loss function that depends homeostatically on both $E$ and $I$ activities:
@@ -852,7 +916,7 @@ L(E,I) = \frac{1}{2}(E_{set} - E)^2 + \frac{1}{2}(I_{set} - I)^2
 \label{eq.LF_energy}
 \end{equation}
 
-\noindent This loss function is an elliptic paraboloid in $(E,I)$ space with a global minimum at $(E_{\set},I_{\set})$ so a gradient descend learning rule as above should converge to that minimum (see Liapunov function and gradient systems: \cite[Section 1.1B]{Wiggins1996}\cite[Sections 9.3 and 9.4]{Hirsch1974}\cite[Section 7.2]{Strogatz2018}. Keep in mind, however, that $L$ has a different shape when expressed as a function of the weights, and that $E$ and $I$ are not necessarily monotonic functions of the weights, so the conditions for the set point of $L$ to be stable or a global minimum or even unique are not necessarily satisfied.
+\noindent This loss function is an elliptic paraboloid in $(E,I)$ space with a global minimum at $(E_{\set},I_{\set})$ so a gradient descend learning rule as above should converge to that minimum (see Liapunov function and gradient systems: \cite[Section 1.1B]{Wiggins1996}\cite[Sections 9.3 and 9.4]{Hirsch1974}\cite[Section 7.2]{Strogatz2018}). Keep in mind, however, that $L$ has a different shape when expressed as a function of the weights, and that $E$ and $I$ are not necessarily monotonic functions of the weights (particularly for a paradoxical system), so the conditions for the set point of $L$ to be stable or a global minimum or even unique are not necessarily satisfied.
 
 
 \paragraph{Partial derivatives of $L$}
@@ -937,28 +1001,54 @@ Putting everything together, the learning rules Eq.\ \ref{eq.LF_generic_rule} ar
 \noindent Note that these are very complicated, nonlinear expressions because both $E$ and $I$ depend on all weights via Eq.\ \ref{eq.LF_implicit_functions}. Also the denominator $C$ depends on all weights (see previous paragraph).
 
 
-\paragraph{Small weights approximation}
+\subsubsection{Approximation}
 
-We want simpler expressions for the learning rules. Note that the exact expressions above all have a homeostatic factor (either $E - E_{\set}$ or $I - I_{\set}$) and a presynaptic factor ($E$ in $\Delta W_{\EE}$ and $\Delta W_{\IE}$ and $I$ in $\Delta W_{\EI}$ and $\Delta W_{\II}$). Despite their complicated dependence on the weights, both factors have simple interpretations so we want to keep them as they are while expanding the rest of the expressions (explicit dependence on the weights including $C$) as a first-order Taylor series around zero. Although this is not a textbook Taylor expansion of the full expressions, it is very informative because the results can be much more easily interpreted (for a similar approach see \cite{Mackwood2020}:
+We want simpler expressions for the learning rules. Note that the exact expressions above all have a homeostatic factor (either $E - E_{\set}$ or $I - I_{\set}$) and a presynaptic factor (either $E$ or $I$), while the rest are complicated expressions coming from the derivatives $\partial E/\partial W_{\XY}$ and  $\partial I/\partial W_{\XY}$. We want to keep the homeostatic and presynaptic factors as they are while simplifying the rest of the expressions (explicit dependence on the weights including $C$) by performing a lowest-order Taylor series expansion. Although this is not a textbook Taylor expansion of the full expressions, it is very informative because the results can be much more easily interpreted (for a similar approach see \cite{Mackwood2020}).
+
+We perform a zeroth-order approximation of the derivatives $\partial E/\partial W_{\XY}$ and  $\partial I/\partial W_{\XY}$ in terms of the weights (i.e.\ while holding the presynaptic factors $E$ and $I$ constant) around the Up state. In this approximation the weights are not small but close to their target values, represented by the relationships Eq.\ \ref{eq.upstate_W}. By substituting the result in Eq.\ \ref{eq.LF_chain_rule}, we get the following approximated learning rules:
 \begin{equation}
 \begin{aligned}
-\Delta W_{\EE} = + \alpha( & (E_{\set} - E)E \, g_E \\
-& + (E_{\set} - E)E W_{\EE} \, g_E^2 \\
-& + (I_{\set} - I)E W_{\IE} \, g_E \, g_I) \\
-\Delta W_{\EI} = - \alpha( & (E_{\set} - E)I \, g_E \\
-& + (E_{\set} - E)I W_{\EE} \, g_E^2 \\
-& + (I_{\set} - I)I W_{\IE} \, g_E \, g_I) \\
-\Delta W_{\IE} = + \alpha( & (I_{\set} - I)E \, g_I \\
-& - (I_{\set} - I)E W_{\II} \, g_I^2 \\
-& - (E_{\set} - E)E W_{\EI} \, g_E \, g_I) \\
-\Delta W_{\II} = - \alpha( & (I_{\set} - I)I \, g_I \\
-& - (I_{\set} - I)I W_{\II} \, g_I^2 \\
-& - (E_{\set} - E)I W_{\EI} \, g_E \, g_I)
+\Delta W_{\EE} & = + \alpha_E E(I_{\set} - I) + \beta_E E(E_{\set} - E) \\
+\Delta W_{\EI} & = - \alpha_E I(I_{\set} - I) - \beta_E I(E_{\set} - E) \\
+\Delta W_{\IE} & = - \alpha_I E(E_{\set} - E) + \beta_I E(I_{\set} - I) \\
+\Delta W_{\II} & = + \alpha_I I(E_{\set} - E) - \beta_I I(I_{\set} - I)
 \end{aligned}
-\label{eq.LF_smallweights}
+\label{eq.LF_approx}
 \end{equation}
 
-\noindent Note that the first terms of these expressions (corresponding to the zeroth order in the approximation) are exactly the standard Homeostatic learning rules, Eq.\ \ref{eq.SH_equation}. Also note that the homeostatic factors in the third terms have the sign corresponding to the Cross-Homeostatic rules, Eq.\ \ref{eq.CH_equation}.
+\noindent where
+\begin{displaymath}
+\begin{aligned}
+\alpha_E & = \alpha g_E E_{\set} W_{\IE\up}/D \\
+\alpha_I & = \alpha A/D \\
+\beta_E & = \alpha g_E B/D \\
+\beta_I & = \alpha I_{\set} (1 - W_{\EE\up} g_E)/D
+\end{aligned}
+\end{displaymath}
+
+\noindent and
+\begin{displaymath}
+\begin{aligned}
+A & = E_{\set} W_{\EE\up} g_E - \Theta_E g_E - E_{\set} \\
+B & = E_{\set} W_{\IE\up} - \Theta_I \\
+D & = \Theta_I W_{\EE\up} g_E - \Theta_E W_{\IE\up} g_E - \Theta_I
+\end{aligned}
+\end{displaymath}
+
+\paragraph{Analysis} Note that $\alpha_E$, $\alpha_I$, $\beta_E$, and $\beta_I$ are all constant. Furthermore, note that
+\begin{itemize}
+\item $A>0$ as it is equal to the ``positive $W_{\EI}$'' condition, Eq.\ \ref{eq.positive_WEI};
+\item $B>0$ as it is part of the ``positive $W_{\II}$'' condition, Eq.\ \ref{eq.positive_WII};
+\item $D>0$ as it is equal to the numerator of $I_{\up}$, Eq.\ \ref{eq.upstate_orig} (up to a positive factor), which must be positive because the denominator is.
+\end{itemize}
+
+\noindent Interestingly, note that the learning rate $\beta_I$ can be either negative or positive depending on whether the Up state where the dynamics is converging to is paradoxical ($W_{\EE\up}g_E - 1 > 0$) or not ($W_{\EE\up}g_E - 1 < 0$).
+
+
+\noindent Note that the terms with $\alpha_{E,I}$ in the approximated learning rules, Eq.\ \ref{eq.LF_approx}, are exactly equal to the Cross-Homeostatic rules, Eq.\ \ref{eq.CH_equation}. Additionaly, the terms with $\beta_{E,I}$ are exactly equal to the Homeostatic rules, Eq.\ \ref{eq.SH_equation}, unless $\beta_I<0$ which would make the learning rule a Cross-Homeo-antiHomeo hybrid.
+
+
+
 
 
 \printbibliography
