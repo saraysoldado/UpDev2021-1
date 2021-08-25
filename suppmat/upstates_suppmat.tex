@@ -37,7 +37,7 @@ sorting=none
 
 \begin{document}
 
-\title{\vspace{-2.0cm}Supplementary Information\\{\bf Orchestrated Excitatory and Inhibitory Learning Rules Lead to the Unsupervised Emergence of Up-states and Balanced Network Dynamics}}
+\title{\vspace{-2.0cm}Supplementary Material\\{\bf Orchestrated Excitatory and Inhibitory Learning Rules Lead to the Unsupervised Emergence of Up-states and Balanced Network Dynamics}}
 \author{Soldado-Magraner, Laje \& Buonomano 2021}
 \date{\today}
 
@@ -116,9 +116,7 @@ g_I & > g_E \\
 
 \noindent both likely preventing the condition to hold. On the other hand, if $\alpha_{\IE}$ and $\alpha_{\II}$ are small enough (slow dynamics of the weights onto the inhibitory neuron) the rule can be stable. See the step-by-step derivation of this stability condition in Section \ref{sec.SH_details}.
 
-As an illustration of the results above, in Figure \ref{fig.SH_stability}(top) we plot the stability condition Eq.\ \ref{eq.SH_stable_cond_v1_summary} with parameter values as in Table \ref{tab.params} and learning rates $\alpha_{\XY} = 0.02$. It is clear that the learning rule is stable in a region with little overlap with the stability region of the neural subsystem.
-
-The stability region can be enlarged by making the dynamics of the weights onto the inhibitory neuron slower, as in Figure \ref{fig.SH_stability}(bottom) where $\alpha_{\EE}=\alpha_{\EI}=0.02$ and $\alpha_{\IE}=\alpha_{\II}=0.001$ (the stability boundary of the learning rule coincides with the trace condition of the neural subsystem).
+As an illustration of the results above, in Figure \ref{fig.SH_stability}(top) we plot the stability condition Eq.\ \ref{eq.SH_stable_cond_v1_summary} with parameter values as in Table \ref{tab.params} and learning rates $\alpha_{\XY} = 0.02$. It is clear that the learning rule is stable in a region with little overlap with the stability region of the neural subsystem. The stability region can be enlarged by making the dynamics of the weights onto the inhibitory neuron slower, as in Figure \ref{fig.SH_stability}(bottom) where $\alpha_{\EE}=\alpha_{\EI}=0.02$ and $\alpha_{\IE}=\alpha_{\II}=0.0002$.
 
 See Section \ref{sec.SH_details} for a detailed analysis.
 
@@ -126,11 +124,11 @@ See Section \ref{sec.SH_details} for a detailed analysis.
 
 \subsection{Homeo-antiHomeo variations}
 
-The stability condition in the previous section was obtained by assuming all learning rates are positive. Interestingly, some of them may be negative and the Up state still be stable. A negative learning rate can be interpreted as the corresponding equation being {\em anti}-homeostatic, i.e.\ if the neural activity ($E$ or $I$) departs from its setpoint then the rule will drive it even farther away. While this kind of behavior would be usually deemed undesired, it is worth considering due to its relationship with the paradoxical regime.
+The stability condition in the previous section was obtained by assuming all learning rates are positive. Interestingly, if some of them are negative then the Up state may still be stable. A negative learning rate can be interpreted as the corresponding equation being {\em anti}-homeostatic, i.e.\ if the neural activity ($E$ or $I$) departs from its setpoint then the rule will drive it even farther away. While this kind of behavior would be usually deemed undesired, it is worth considering due to its relationship with the paradoxical regime.
 
-In this section we consider the Homeostatic rule, Eq.\ \ref{eq.SH_equation}, and let the learning rates $\alpha{\XY}$ be either positive or negative. The particular case where all learning rates are positive corresponds to the original Homeostatic learning rule.
+In this section we consider the Homeostatic rule, Eq.\ \ref{eq.SH_equation}, and let the learning rates $\alpha_{\XY}$ be either positive or negative. The particular case where all learning rates are positive corresponds to the original Homeostatic learning rule.
 
-Once we free the signs of the learning rates, the stability conditions read:
+Once we free the signs of the learning rates, the Up state needs two conditions to be stable:
 \begin{eqnarray}
 & \begin{aligned}
 (R^2 \alpha_3 + & \alpha_4)(W_{\EE\up} \, g_E  - 1)g_I \\
@@ -427,7 +425,7 @@ In Figure \ref{fig.FB_stability} we plot the stability condition of this rule, E
 \parbox[c]{\columnwidth}{
 \begin{figure}[H]
 \includegraphics[width=\columnwidth]{FB_stability_fasteralpha3.pdf}
-\caption{Regions of stability, {\em ForcedBalance} rule. (Top Left) Equal rates ($\alpha_{1,3}=0.02$). (Top Right) Slow excitatory ($\alpha_1=0.0002$, $\alpha_3=0.02$). (Bottom Left) Slow inhibitory ($\alpha_1=0.02$, $\alpha_3=0.0002$). Every label is on the side where the  corresponding  condition  holds (synaptic stable 1 and 2: Eq.\ \ref{eq.FB_stable_cond} after switching to $W_{\EE}$ and $W_{\IE}$; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
+\caption{Regions of stability, {\em ForcedBalance} rule. (Top Left) Equal rates ($\alpha_{1,3}=0.02$). (Top Right) Slow inhibitory ($\alpha_1=0.02$, $\alpha_3=0.0002$). (Bottom Left) Slow excitatory ($\alpha_1=0.0002$, $\alpha_3=0.02$). Every label is on the side where the  corresponding  condition  holds (synaptic stable 1 and 2: Eq.\ \ref{eq.FB_stable_cond} after switching to $W_{\EE}$ and $W_{\IE}$; detcond stable: Eq.\ \ref{eq.detcond_orig}; trcond stable: Eq.\ \ref{eq.tracecond_orig}; positive $W_{\EI}$: Eq.\ \ref{eq.positive_WEI}; positive $W_{\II}$: Eq.\ \ref{eq.positive_WII}; paradoxical: Eq.\ \ref{eq.paradoxical}).}
 \label{fig.FB_stability}
 \end{figure}}
 \end{figure*}
@@ -659,10 +657,6 @@ Next we nondimensionalize all variables in order to have a simpler system and ma
 \tau_0 & = 1/(\alpha g_E E_{\set} I_{\set}) \\
 R & = E_{\set}/I_{\set} \\
 g & = g_E/g_I \\
-\end{aligned}
-\end{displaymath}
-\begin{displaymath}
-\begin{aligned}
 \alpha_2 & = \alpha_{\EI}/\alpha_{\EE} \\
 \alpha_3 & = \alpha_{\IE}/\alpha_{\EE} \\
 \alpha_4 & = \alpha_{\II}/\alpha_{\EE} \\
