@@ -461,7 +461,7 @@ In order to apply the tools from Dynamical Systems' theory for flows in a unifie
 
 In the following we first define the neural subsystem and compute its stability conditions (next subsection). Then we consider every learning rule in detail (following subsections).
 
-\subparagraph{Paradoxical regime.} We show detailed calculations of the stability conditions for every learning rule in the paradoxical regime only; see Section \ref{sec.nonparadoxical} for the non-paradoxical case.
+\subparagraph{Paradoxical regime.} In this text we show detailed calculations of the stability conditions for the Homeostatic learning rule in the paradoxical regime only; see Section \ref{sec.nonparadoxical} for the non-paradoxical case.
 
 
 
@@ -486,7 +486,7 @@ We consider a two-subpopulation model with firing-rate units $E$ and $I$ with Re
 
 \noindent All variables and parameters are definite positive. In this subsection the synaptic weights $W_{\mathit{XY}}$ are fixed.
 
-\subparagraph{Up state} The Up state is the non-trivial fixed point of the system (i.e.\ a steady-state solution where $dE/dt=dI/dt=0$):
+\subparagraph{Up state.} The Up state is the non-trivial fixed point of the system (i.e.\ a steady-state solution where $dE/dt=dI/dt=0$):
 \begin{equation}
 \begin{aligned}
 E_{\up} & = (W_{\EI} \, g_I \, \Theta_I - (W_{\II} \, g_I + 1) \, \Theta_E) \, g_E / C \\
@@ -742,7 +742,7 @@ w_{\II\up} & = R (Rw_{\IE\up} - g) - Rg \theta_I
 The program for assessing linear stability of the Up state is as follows: a) compute the Jacobian (the matrix of first derivatives) of Eq.\ \ref{eq.SH_full_norm_qss} and evaluate it at the Up state; b) compute the eigenvalues of the Jacobian (two of them will be zero because the fixed points form a continuous 2D plane in phase space); c) If the real part of the two nonzero eigenvalues is negative then the Up state is stable; if at least one of the nonzero eigenvalue has positive real part then the Up state is unstable.
 
 
-\paragraph{Jacobian matrix}
+\paragraph{Jacobian matrix.}
 
 Let the full system in the QSS approximation (Eq.\ \ref{eq.SH_full_norm_qss}) be written as
 \begin{displaymath}
@@ -769,7 +769,7 @@ In order to have the Jacobian specialized in the Up state, these expressions are
 
 
 
-\paragraph{Eigenvalues of the Jacobian matrix}
+\paragraph{Eigenvalues of the Jacobian matrix.}
 
 The Jacobian matrix has two zero eigenvalues and two nonzero eigenvalues. The nonzero eigenvalues have the form:
 \begin{equation}
@@ -788,7 +788,7 @@ D & = 2(R^2\alpha_3 + \alpha_4)(R^2 + \alpha_2)/R
 \end{equation}
 
 
-\paragraph{Sign of the eigenvalues}
+\paragraph{Sign of the eigenvalues.}
 
 To determine the sign of the real part of Eq.\ \ref{eq.SH_eigvals}, first note that the factor $D$ is positive definite. Second, $C$ must be positive because it is related to one of the stability conditions of the neural subsystem (Eq.\ \ref{eq.detcond_orig}, after substituting back to dimensionalized quantities). Note next that $A^2 - DC$ is less than $A^2$ (since $C$ and $D$ are positive), and thus the square root is either real and less than $|A|$ or imaginary, both cases leading to $\RE(A \pm \sqrt{A^2-DC}) < 0$ if $A<0$. The learning rule is then stable (both eigenvalues have negative real part) if $A<0$, which in terms of the original parameters and free weights $W_{\EE}$ and $W_{\IE}$ reads:
 \begin{equation}
@@ -942,7 +942,7 @@ L = L(E,I)
 
 \subsubsection{Exact learning rules}
 
-\paragraph{Loss function}
+\paragraph{Loss function.}
 
 We choose a very general loss function that depends homeostatically on both $E$ and $I$ activities:
 \begin{equation}
@@ -953,7 +953,7 @@ L(E,I) = \frac{1}{2}(E_{set} - E)^2 + \frac{1}{2}(I_{set} - I)^2
 \noindent This loss function is an elliptic paraboloid in $(E,I)$ space with a global minimum at $(E_{\set},I_{\set})$ so a gradient descend learning rule as above should converge to that minimum (see Liapunov function and gradient systems: \cite[Section 1.1B]{Wiggins1996}\cite[Sections 9.3 and 9.4]{Hirsch1974}\cite[Section 7.2]{Strogatz2018}). Keep in mind, however, that $L$ has a different shape when expressed as a function of the weights, and that $E$ and $I$ are not necessarily monotonic functions of the weights (particularly for a paradoxical system), so the conditions for the set point of $L$ to be stable or a global minimum or even unique are not necessarily satisfied.
 
 
-\paragraph{Partial derivatives of $L$}
+\paragraph{Partial derivatives of $L$.}
 
 The partial derivatives of $L$ with respect to $E$ and $I$ are simply
 \begin{equation}
@@ -966,7 +966,7 @@ The partial derivatives of $L$ with respect to $E$ and $I$ are simply
 
 
 
-\paragraph{Partial derivatives of $E$ and $I$}
+\paragraph{Partial derivatives of $E$ and $I$.}
 
 We compute the partial derivatives $\partial X/\partial W_{\XY}$ ($X,Y = E,I$) by first equating the neural subsystem (Eq.\ \ref{eq.neural}) to zero:
 \begin{equation}
@@ -1013,7 +1013,7 @@ C = W_{\EI} W_{\IE} \, g_E\, g_I - (W_{\II} \, g_I + 1)(W_{\EE} \, g_E - 1)
 \end{displaymath}
 
 
-\paragraph{Exact learning rules}
+\paragraph{Exact learning rules.}
 
 Putting everything together, the learning rules Eq.\ \ref{eq.LF_generic_rule} are:
 \begin{equation}
@@ -1070,7 +1070,7 @@ D & = \Theta_I W_{\EE\up} g_E - \Theta_E W_{\IE\up} g_E - \Theta_I
 \end{aligned}
 \end{displaymath}
 
-\paragraph{Analysis} Note that $\alpha_E$, $\alpha_I$, $\beta_E$, and $\beta_I$ are all constant. Furthermore, note that
+\paragraph{Analysis.} Note that $\alpha_E$, $\alpha_I$, $\beta_E$, and $\beta_I$ are all constant. Furthermore, note that
 \begin{itemize}
 \item $A>0$ as it is equal to the ``positive $W_{\EI}$'' condition, Eq.\ \ref{eq.positive_WEI};
 \item $B>0$ as it is part of the ``positive $W_{\II}$'' condition, Eq.\ \ref{eq.positive_WII};
